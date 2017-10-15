@@ -6,8 +6,8 @@
 int main() {
 	std::cout << "Start" << std::endl;
 
-	//PriorityQueue<int> pq(9);
-	//pq.push('d', 4);
+	PriorityQueue<int> pq(9);
+	pq.push('d', 4);
 	/*std::ofstream testfil;
 	testfil.open("boards\\Testfil.txt", std::ios::out);
 	if (testfil.is_open()) {
@@ -24,7 +24,7 @@ int main() {
 	bool res = verifyBoardFile("boards/board-1-1.txt", lineLength, numOfLines);
 	std::cout << "numofLines: " << numOfLines << ", lineLength: " << lineLength << " validfile: " << res<< '\n';*/
 	
-	Board b = Board("boards/board-1-1.txt");
-	std::cout << b.toString();
+	//Board b = Board("boards/board-1-1.txt");
+	//std::cout << b.toString();
 
 }

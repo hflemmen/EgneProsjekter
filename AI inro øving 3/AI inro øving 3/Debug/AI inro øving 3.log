@@ -1,3 +1,25 @@
-﻿  Node.cpp
-Board.obj : error LNK2019: unresolved external symbol "public: __thiscall Pair<int>::Pair<int>(void)" (??0?$Pair@H@@QAE@XZ) referenced in function "public: __thiscall Board::Board(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (??0Board@@QAE@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
-C:\Users\henri\Documents\GitHub\EgneProsjekter\AI inro °ving 3\Debug\AI inro °ving 3.exe : fatal error LNK1120: 1 unresolved externals
+﻿  main.cpp
+c:\users\henri\documents\github\egneprosjekter\ai inro øving 3\ai inro øving 3\priorityqueue.h(112): error C2107: illegal index, indirection not allowed
+  c:\users\henri\documents\github\egneprosjekter\ai inro øving 3\ai inro øving 3\priorityqueue.h(111): note: while compiling class template member function 'void PriorityQueue<int>::push(T,int)'
+          with
+          [
+              T=int
+          ]
+  c:\users\henri\documents\github\egneprosjekter\ai inro øving 3\ai inro øving 3\main.cpp(10): note: see reference to function template instantiation 'void PriorityQueue<int>::push(T,int)' being compiled
+          with
+          [
+              T=int
+          ]
+  c:\users\henri\documents\github\egneprosjekter\ai inro øving 3\ai inro øving 3\main.cpp(9): note: see reference to class template instantiation 'PriorityQueue<int>' being compiled
+c:\users\henri\documents\github\egneprosjekter\ai inro øving 3\ai inro øving 3\priorityqueue.h(112): error C2059: syntax error: '='
+c:\users\henri\documents\github\egneprosjekter\ai inro øving 3\ai inro øving 3\priorityqueue.h(113): error C2664: 'bool PriorityQueue<int>::upheap(int)': cannot convert argument 1 from 'Bundle<T> *' to 'int'
+          with
+          [
+              T=int
+          ]
+  c:\users\henri\documents\github\egneprosjekter\ai inro øving 3\ai inro øving 3\priorityqueue.h(113): note: There is no context in which this conversion is possible
+c:\users\henri\documents\github\egneprosjekter\ai inro øving 3\ai inro øving 3\priorityqueue.h(114): error C2143: syntax error: missing ';' before '}'
+  Generating Code...
+  Compiling...
+  PriorityQueue.cpp
+  Generating Code...

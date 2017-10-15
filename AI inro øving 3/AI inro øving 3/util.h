@@ -6,5 +6,5 @@ public:
 	T x;
 	T y;
 	Pair(T nx, T ny):x(nx), y(ny){}
-	Pair();
+	Pair() :x(0),y(0){}
 };

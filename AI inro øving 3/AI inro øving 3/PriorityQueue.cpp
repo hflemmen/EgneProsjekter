@@ -1,7 +1,7 @@
 #include "PriorityQueue.h"
 #include <math.h>
 #include <sstream>
-
+/*
 
 template<typename T>
 bool PriorityQueue<T>::upheap(int index)
@@ -94,3 +94,4 @@ std::string PriorityQueue<T>::toString()
 	}
 	return ss.str();
 }
+*/
