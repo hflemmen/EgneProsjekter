@@ -17,9 +17,9 @@ int main() {
 	pq.push(Node(2, 4, 1), 2);
 	
 
-	//std::cout << pq.pop();
-	//std::cout << pq.pop();
-	//std::cout << pq.pop();
+	std::cout << pq.pop();
+	std::cout << pq.pop();
+	std::cout << pq.pop();
 	/*std::ofstream testfil;
 	testfil.open("boards\\Testfil.txt", std::ios::out);
 	if (testfil.is_open()) {

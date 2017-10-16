@@ -32,3 +32,8 @@ Node Node::getNeigbour(int dir)
 		throw 404;
 	}
 }
+
+void Node::addNeigbour(int dir, Node newNeigbour)
+{
+	*this->neibours[dir] = newNeigbour;
+}

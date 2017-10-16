@@ -7,6 +7,9 @@
 
 bool PriorityQueueNode::upheap(int index)
 {
+	if (getParent(index) == 0) {
+		return false;
+	}
 	if (data[index].priority > data[getParent(index)].priority) {
 		swap(index, getParent(index));
 		return upheap(getParent(index));
@@ -48,7 +51,8 @@ return 2 * index + !leftChild;//Negert fordi venstre barn er 2n.
  
 int PriorityQueueNode::getParent(int index)
 {
-return (int) floor( index/2);
+	
+	return (int) floor( index/2);
 }
 
  
@@ -63,18 +67,19 @@ data[index2] = temp;
  
 PriorityQueueNode::PriorityQueueNode(int expectedSize)
 {
-size = 2 ^ (int)floor(log2(expectedSize));
-data = new Bundle[size + 1];//+1 for å kunne ha den 1 indeksert.
-std::cout << "Lagde en heap med dette antall noder: " << size << '\n';
+	nextPlace = 1;
+	size = 2 ^ (int)floor(log2(expectedSize));
+	data = new Bundle[size + 1];//+1 for å kunne ha den 1 indeksert.
+	std::cout << "Lagde en heap med dette antall noder: " << size << '\n';
 }
 
  
-inline Node PriorityQueueNode::pop()
+Node PriorityQueueNode::pop()
 {
-Node res = data[1].element;
-data[1] = data[--nextPlace];//nextPlace er neste ledige plass å legge et nytt barn. Dekrementeres fordi denne nå forsvinner.
-downheap(1);//Ordner datastrukturen rekursivt.
-return res;
+	Node res = data[1].element;
+	data[1] = data[--nextPlace];//nextPlace er neste ledige plass å legge et nytt barn. Dekrementeres fordi denne nå forsvinner.
+	downheap(1);//Ordner datastrukturen rekursivt.
+	return res;
 }
 
  
@@ -85,15 +90,14 @@ upheap(nextPlace++);//^
 }
 
  
-/*std::string PriorityQueueNode::toString()
+std::string PriorityQueueNode::toString()
 {
-std::ostringstream ss;
-for (int e = 0; e <=log2(size); e++) {
-for (int u = 1; u <= e; u++) {
-ss << data[u];
+	std::ostringstream ss;
+	for (int e = 0; e <=log2(size); e++) {
+		for (int u = 1; u <= e; u++) {
+		ss << data[u].toString();
+	}
+		ss << '\n';
+	}
+	return ss.str();
 }
-ss << '\n';
-}
-return ss.str();
-}
-*/

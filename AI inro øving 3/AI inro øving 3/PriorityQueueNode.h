@@ -34,7 +34,6 @@ private:
 	void swap(int index1, int index2);
 	int nextPlace;//Er en index i dataarrayet
 public:
-
 	PriorityQueueNode(int expectedSize);//Fordi dette proskjektet kan bestemme ganske riktig hvor stor heap vi trenger. Må initialisere den underliggende arrayen.
 	Node pop();
 	void push(Node newElement, int pri);
