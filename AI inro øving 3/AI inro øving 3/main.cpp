@@ -1,13 +1,25 @@
 #include "Board.h"
 #include <iostream>
 #include <fstream>
-#include "PriorityQueue.h"
+#include "PriorityQueueNode.h"
+#include "Node.h"
 ;
 int main() {
 	std::cout << "Start" << std::endl;
 
-	PriorityQueue<int> pq(9);
-	pq.push('d', 4);
+	Node n = Node(1, 1, 1);
+	std::cout << n;
+	Node n2 = Node(1, 0, 0);
+
+	PriorityQueueNode pq(9);
+	pq.push(n, 4);
+	pq.push(n2, 54);
+	pq.push(Node(2, 4, 1), 2);
+	
+
+	//std::cout << pq.pop();
+	//std::cout << pq.pop();
+	//std::cout << pq.pop();
 	/*std::ofstream testfil;
 	testfil.open("boards\\Testfil.txt", std::ios::out);
 	if (testfil.is_open()) {

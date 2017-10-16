@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 
-
+/*
 template<typename E>
 struct Bundle
 {
@@ -107,9 +107,9 @@ inline T PriorityQueue<T>::pop()
 }
 
 template<class T>
-void PriorityQueue<T>::push(T newElement, int pri)
+void PriorityQueue<T>::push( newElement, int pri)
 {
-	data[data[0]]* = Bundle<T>(pri, newElement);//data[0] må inkrementeres for å være konsistent. Utsetter det til neste linje for å kunne bruke den en gang til.
+	data[data[0]]* = Bundle(pri, newElement);//data[0] må inkrementeres for å være konsistent. Utsetter det til neste linje for å kunne bruke den en gang til.
 	upheap(data[0]++)//^
 }
 
@@ -125,3 +125,4 @@ std::string PriorityQueue<T>::toString()
 	}
 	return ss.str();
 }
+*/
