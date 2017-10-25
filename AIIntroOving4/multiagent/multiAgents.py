@@ -73,7 +73,23 @@ class ReflexAgent(Agent):
         newGhostStates = successorGameState.getGhostStates()
         newScaredTimes = [ghostState.scaredTimer for ghostState in newGhostStates]
 
-        "*** YOUR CODE HERE ***"
+        print newPos
+        print newFood
+        print newGhostStates
+        print newScaredTimes
+
+        distanceToGhostBeforeAction = 4
+        ghostDistanceWeight = 2
+        scaredFactor = 1
+        if(newScaredTimes > 1):
+            scaredFactor = 0.5
+
+
+        score = currentGameState.getFood() - newFood
+
+        for ghostPos in newGhostStates:
+            if(scaredFactor*( newPos.x - ghostPos.x + newPos.y - ghostPos.y) <= distanceToGhostBeforeAction):
+                score -=  (newPos.x - ghostPos.x + newPos.y - ghostPos.y) * ghostDistanceWeight
         return successorGameState.getScore()
 
 def scoreEvaluationFunction(currentGameState):
@@ -128,6 +144,9 @@ class MinimaxAgent(MultiAgentSearchAgent):
           gameState.getNumAgents():
             Returns the total number of agents in the game
         """
+
+        for move in gameState.getLegalActions(self.depth % gameState.getNumAgents()):
+
         "*** YOUR CODE HERE ***"
         util.raiseNotDefined()
 
@@ -135,6 +154,8 @@ class AlphaBetaAgent(MultiAgentSearchAgent):
     """
       Your minimax agent with alpha-beta pruning (question 3)
     """
+
+    def AlphaBetaSearch(self,state):
 
     def getAction(self, gameState):
         """
