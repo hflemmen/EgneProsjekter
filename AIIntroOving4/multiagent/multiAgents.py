@@ -17,7 +17,7 @@ from game import Directions
 import random, util
 
 from game import Agent
-
+import sys
 class ReflexAgent(Agent):
     """
       A reflex agent chooses an action at each choice point by examining
@@ -72,7 +72,7 @@ class ReflexAgent(Agent):
         newFood = successorGameState.getFood()
         newGhostStates = successorGameState.getGhostStates()
         newScaredTimes = [ghostState.scaredTimer for ghostState in newGhostStates]
-
+        """
         print newPos
         print newFood
         print newGhostStates
@@ -90,6 +90,9 @@ class ReflexAgent(Agent):
         for ghostPos in newGhostStates:
             if(scaredFactor*( newPos.x - ghostPos.x + newPos.y - ghostPos.y) <= distanceToGhostBeforeAction):
                 score -=  (newPos.x - ghostPos.x + newPos.y - ghostPos.y) * ghostDistanceWeight
+
+        #Det over har ingenting med saken a gjore. Det var ikke meningen at jeg skulle ende pa det.
+        """
         return successorGameState.getScore()
 
 def scoreEvaluationFunction(currentGameState):
@@ -127,7 +130,7 @@ class MinimaxAgent(MultiAgentSearchAgent):
       Your minimax agent (question 2)
     """
 
-    def getAction(self, gameState):
+    def getAction(self, gameState, currentDepth = 0):
         """
           Returns the minimax action from the current gameState using self.depth
           and self.evaluationFunction.
@@ -144,8 +147,23 @@ class MinimaxAgent(MultiAgentSearchAgent):
           gameState.getNumAgents():
             Returns the total number of agents in the game
         """
+        agent = currentDepth % gameState.getNumAgents()
 
-        for move in gameState.getLegalActions(self.depth % gameState.getNumAgents()):
+        if(gameState.isWin() or gameState.isLose() or currentDepth>self.depth * gameState.getNumAgents()):
+            #Dette er en bladnode
+            return self.evaluationFunction(gameState)
+
+        tempBestAction = 42#Skal ikke komme gjennom, bare for debugging
+        tempBestActionScore = sys.maxint if (agent > 0) else -sys.maxint
+        for move in gameState.getLegalActions(agent):
+            nextState = gameState.generateSuccessor(agent ,move)
+            nextStateScore = self.getAction(nextState,currentDepth+1)
+            condition = nextStateScore < tempBestActionScore if agent > 0 else nextStateScore > tempBestActionScore
+            if(condition):
+                tempBestAction = move
+                tempBestActionScore = nextStateScore
+
+        return tempBestAction if currentDepth == 0 else tempBestActionScore
 
         "*** YOUR CODE HERE ***"
         util.raiseNotDefined()
@@ -154,8 +172,6 @@ class AlphaBetaAgent(MultiAgentSearchAgent):
     """
       Your minimax agent with alpha-beta pruning (question 3)
     """
-
-    def AlphaBetaSearch(self,state):
 
     def getAction(self, gameState):
         """
