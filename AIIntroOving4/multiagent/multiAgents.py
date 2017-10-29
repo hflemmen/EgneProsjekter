@@ -149,7 +149,7 @@ class MinimaxAgent(MultiAgentSearchAgent):
         """
         agent = currentDepth % gameState.getNumAgents()
 
-        if(gameState.isWin() or gameState.isLose() or currentDepth>self.depth * gameState.getNumAgents()):
+        if(gameState.isWin() or gameState.isLose() or currentDepth>=self.depth * gameState.getNumAgents()):
             #Dette er en bladnode
             return self.evaluationFunction(gameState)
 
@@ -173,12 +173,41 @@ class AlphaBetaAgent(MultiAgentSearchAgent):
       Your minimax agent with alpha-beta pruning (question 3)
     """
 
-    def getAction(self, gameState):
+    def getAction(self, gameState, currentDepth = 0, parrentAlhpa = -sys.maxint,parrentBeta = sys.maxint):
         """
           Returns the minimax action using self.depth and self.evaluationFunction
         """
-        "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        if(gameState.isWin() or gameState.isLose() or currentDepth>=self.depth * gameState.getNumAgents()):
+            #Dette er en bladnode
+            return self.evaluationFunction(gameState)
+        alpha = parrentAlhpa
+        beta = parrentBeta
+        agent = currentDepth % gameState.getNumAgents()
+
+        tempBestAction = 42#Skal ikke komme gjennom, bare for debugging
+        tempBestActionScore = sys.maxint if (agent > 0) else -sys.maxint
+        for move in gameState.getLegalActions(agent):
+            nextState = gameState.generateSuccessor(agent ,move)
+            nextStateScore = self.getAction(nextState,currentDepth+1,alpha,beta)
+            if(agent>0):
+                if(nextStateScore < beta):
+                    beta = nextStateScore
+            else:
+                if(nextStateScore>alpha):
+                    alpha = nextStateScore
+
+            condition = nextStateScore < tempBestActionScore if agent > 0 else nextStateScore > tempBestActionScore
+            if(condition):
+                tempBestAction = move
+                tempBestActionScore = nextStateScore
+
+            pruningTime = parrentAlhpa > tempBestActionScore if agent > 0 else parrentBeta < tempBestActionScore
+            if pruningTime:
+                return tempBestActionScore#Kan hende jeg burde ta hensyn til at det kunne vare rotnoden, men hvis rotnoden prunes har jeg storre problemer.
+
+
+
+        return tempBestAction if currentDepth == 0 else tempBestActionScore
 
 class ExpectimaxAgent(MultiAgentSearchAgent):
     """
